@@ -1,7 +1,9 @@
-## a. Download and parse references
+# 300BCG ATAC-seq pipeline
+
+## Part 1. Download and parse references
 
 ### Genome
-1. Create a references/hg38 subfolder 
+1. Create a references/hg38 subfolder
 2. Download and g-unzip the FASTA file from the encode project in the references/hg38 folder (https://www.encodeproject.org/files/GRCh38_no_alt_analysis_set_GCA_000001405.15/@@download/GRCh38_no_alt_analysis_set_GCA_000001405.15.fasta.gz)
 3. Within the hg38 subfolder create the bowtie2 index: `bowtie2-build GRCh38_no_alt_analysis_set_GCA_000001405.15.fasta GRCh38_no_alt_analysis_set_GCA_000001405.15`
 4. Within the references subfolder download and g-unzip the gencode annotations: https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_31/gencode.v31.basic.annotation.gtf.gz
@@ -23,7 +25,7 @@
 Edit the paths in the pipeline/atac/atacseq.yaml file to point to the newly created reference files and to the location of the spp script
 
 
-## b. Setup Environment
+## Part 2. Setup environment
 
 1. Create the conda environments
 ```
@@ -42,7 +44,7 @@ conda activate bcg_notebooks
 sbatch notebooks/jupyter_lab.sh
 ```
 
-## c. Run the pipeline
+## Part 3. Run the pipeline
 
 1. Run the notebooks/0000.01-Prepare_pipeline_input notebook.ipynb to generate the annotations to run the pipeline
 2. Activate the pipeline environemnt `conda activate bcg_pipeline`
@@ -50,7 +52,7 @@ sbatch notebooks/jupyter_lab.sh
 4. Summarize the results for all samples `looper summarize ./pipeline/bcg_pipeline.yaml`
 
 
-## d. Postprocessing
+## Part 4. Postprocessing
 The notebooks bust be run within jupyter lab launcehd within the "bcg_notebooks" environment.
 
 1. Create the complete_metadata file using the "0001.01-Create_Annotations" notebook
